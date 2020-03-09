@@ -15,7 +15,6 @@ export const TextFieldComponent: React.FC<Props> = props => {
   return (
     <div className={classes.root}>
     <TextField
-      id="standard-textarea"
       label="Text"
       rowsMax={10}
       placeholder={props.TextBox.state}
