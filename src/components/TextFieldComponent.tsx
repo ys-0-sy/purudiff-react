@@ -11,15 +11,17 @@ type Props = {
 
 export const TextFieldComponent: React.FC<Props> = props => {
   const classes = useStyles()
+
   return (
     <div className={classes.root}>
     <TextField
       id="standard-textarea"
-      label="Multiline Placeholder"
+      label="Text"
+      rowsMax={10}
       placeholder={props.TextBox.state}
       onChange={(event) => props.TextBox.setState(event.target.value)}
       fullWidth
-        multiline
+      multiline
       />
     </div>
   )
