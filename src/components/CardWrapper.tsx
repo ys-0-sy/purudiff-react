@@ -18,6 +18,7 @@ export const CardWrapper: React.FC<Props> = props => {
 
 const useStyles = makeStyles({
   root: {
-    padding: 8
+    padding: 8,
+    marginTop: 60
   }
 })

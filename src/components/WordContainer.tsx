@@ -52,7 +52,7 @@ export const WordContainer: React.FC<Props> = props => {
     const diffEnv = item.added ? "Added"
                     : item.removed ? "Removed"
                     : "Default"
-    const puruEnv = props.puru ? "shake shake-constant" : ""
+    const puruEnv = props.puru ? "shake shake-constant Puru" : ""
     return (
       diffEnv === "Default" ?  "Default" : `${diffEnv} ${puruEnv}`
     )

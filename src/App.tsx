@@ -1,14 +1,33 @@
 import React from 'react';
 import { useState } from 'react'
 import './App.scss';
-import { Grid, Tabs, Tab } from '@material-ui/core'
+import { Grid, Tabs, Tab, AppBar } from '@material-ui/core'
 import { WordContainer } from './components/WordContainer';
 import { TextFieldComponent } from './components/TextFieldComponent';
 import { CardWrapper } from './components/CardWrapper';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 
-const leftLorem = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\nLorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. \n"
-const rightLorem = "Lorem Ipsum is samply dammy text of the printing and typosetting industry.\n Lorem Ipsam has bean the industri's standard dummy txt evr sieuce tha 1700s, we hn an unknon printer took a galley of type and scrambled it to make a type specimen book."
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#43a047',
+      main: '#388e3c',
+      dark: '#1b5e20',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ef5350',
+      main: '#f44336',
+      dark: '#b71c1c',
+      contrastText: '#000',
+    },
+  },
+});
+
+const leftLorem = "Lorem Ipsum is simply dummy \ntext of the printing and typesetting industry.\n"
+const rightLorem = "Lorem Ipsam is samply dammy text of the printing and typosetting industry.\n ."
 
 function App() {
   const [leftTextBox, setLeftTextBox] = useState(leftLorem)
@@ -17,17 +36,22 @@ function App() {
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
-  const isPuru = value? false : true
+  const isPuru = value ? false : true
+
   return (
     <div className="App">
+      <ThemeProvider theme={theme}>
+      <AppBar position="static">
         <Tabs
           value={value}
           variant="fullWidth"
           onChange={handleChange}
+          className={"TabStyle"}
         >
           <Tab label="Purudiff" />
           <Tab label="Diff" />
-      </Tabs>
+        </Tabs>
+        </AppBar>
       <Grid container justify="space-evenly" alignItems="flex-start">
         <CardWrapper>
           <TextFieldComponent
@@ -47,7 +71,8 @@ function App() {
           />
           <WordContainer texts={[leftTextBox, rightTextBox]} puru={isPuru}  type="removed" />
         </CardWrapper>
-      </Grid>
+        </Grid>
+        </ThemeProvider>
     </div>
   );
 }
