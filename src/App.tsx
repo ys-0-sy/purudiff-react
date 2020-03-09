@@ -54,22 +54,24 @@ function App() {
         </AppBar>
       <Grid container justify="space-evenly" alignItems="flex-start">
         <CardWrapper>
-          <TextFieldComponent
+            <TextFieldComponent
+              data-test="TextField1"
               TextBox={{
                 state: leftTextBox,
                 setState: setLeftTextBox
               }}
           />
-          <WordContainer texts={[leftTextBox, rightTextBox]} puru={isPuru} type="added" />
+          <WordContainer data-test="Word1" texts={[leftTextBox, rightTextBox]} puru={isPuru} type="added" />
         </CardWrapper>
         <CardWrapper>
-          <TextFieldComponent
+            <TextFieldComponent
+              data-test="TextField2"
             TextBox={{
                 state: rightTextBox,
                 setState: setRightTextBox
             }}
           />
-          <WordContainer texts={[leftTextBox, rightTextBox]} puru={isPuru}  type="removed" />
+          <WordContainer data-test="Word2" texts={[leftTextBox, rightTextBox]} puru={isPuru}  type="removed" />
         </CardWrapper>
         </Grid>
         </ThemeProvider>
