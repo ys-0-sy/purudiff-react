@@ -1,5 +1,6 @@
 import * as React from 'react'
-import {Grid, TextField} from '@material-ui/core'
+import {TextField} from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 
 type Props = {
   TextBox: {
@@ -9,16 +10,23 @@ type Props = {
 }
 
 export const TextFieldComponent: React.FC<Props> = props => {
+  const classes = useStyles()
   return (
-      <Grid item xs={4}>
-        <TextField
-          id="standard-textarea"
-          label="Multiline Placeholder"
-          placeholder={props.TextBox.state}
-          onChange={(event) => props.TextBox.setState(event.target.value)}
-          fullWidth
-          multiline
-        />
-      </Grid>
+    <div className={classes.root}>
+    <TextField
+      id="standard-textarea"
+      label="Multiline Placeholder"
+      placeholder={props.TextBox.state}
+      onChange={(event) => props.TextBox.setState(event.target.value)}
+      fullWidth
+        multiline
+      />
+    </div>
   )
 }
+
+const useStyles = makeStyles({
+  root: {
+    marginBottom: 20
+  }
+})

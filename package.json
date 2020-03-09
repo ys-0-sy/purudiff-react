@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "csshake": "^1.5.3",
     "diff": "^4.0.2",
     "lodash": "^4.17.15",
     "react": "^16.13.0",
@@ -43,6 +44,7 @@
     "@types/lodash": "^4.14.149",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
+    "node-sass": "^4.13.1",
     "typescript": "^3.8.3"
   }
 }

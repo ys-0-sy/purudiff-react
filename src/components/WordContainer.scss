@@ -1,0 +1,15 @@
+@import 'csshake';
+
+.Added {
+  background: limegreen;
+  color: white;
+  display: inline-block;
+}
+.Removed {
+  background: lightcoral;
+  color: white;
+  display: inline-block;
+}
+.Default {
+  color: lightslategrey;
+}

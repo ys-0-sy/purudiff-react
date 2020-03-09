@@ -2,12 +2,15 @@ import * as React from 'react'
 import { Grid } from '@material-ui/core'
 import * as JsDiff from 'diff'
 import _ from 'lodash'
-import { makeStyles } from '@material-ui/styles'
+
+
+import './WordContainer.scss'
 
 type Props = {
   texts: string[],
   children?: React.ReactNode
   type: "added" | "removed",
+  puru: boolean
 }
 
 type parseText = {
@@ -37,18 +40,22 @@ const numReturn = (item:JsDiff.Change) => {
   return (item.value.match(/\n/g) || []).length
 }
 
-const numSpace = (item:JsDiff.Change) => {
-  return (item.value.match(/ /g) || []).length
+const numSpace = (item: JsDiff.Change) => {
+  const count = (item.value.match(/ /g) || []).length
+  return count > 0 ? count -1 : 0
 }
 
 
 
 export const WordContainer: React.FC<Props> = props => {
-  const classes = useStyles()
-  const computeStyle = (item: parseText) => {
-    return (item.added ? classes.added
-            : item.removed ? classes.removed
-            : classes.text)
+  const computeClassName = (item: parseText) => {
+    const diffEnv = item.added ? "Added"
+                    : item.removed ? "Removed"
+                    : "Default"
+    const puruEnv = props.puru ? "shake shake-constant" : ""
+    return (
+      diffEnv === "Default" ?  "Default" : `${diffEnv} ${puruEnv}`
+    )
   }
   const diffText = parseText(JsDiff.diffChars(props.texts[0], props.texts[1]).filter((words) => {
     if (props.type === "added") {
@@ -56,15 +63,15 @@ export const WordContainer: React.FC<Props> = props => {
     } else {
       return !words.removed
       }
-
   }))
+
   return (
-    <Grid item xs={4} style={{textAlign: 'left', fontSize: 16}}>
+    <Grid style={{textAlign: 'left', fontSize: 16}}>
       {diffText.map((item: parseText) => {
         return (
           <span
             key={item.id}
-            className={computeStyle(item)}
+            className={computeClassName(item)}
           >
           {item.value}
           {_.range(numSpace(item)).map(() => (<><span>&nbsp;</span></>))}
@@ -77,16 +84,4 @@ export const WordContainer: React.FC<Props> = props => {
 }
 
 
-const useStyles = makeStyles({
-  added: {
-    background: 'green',
-    color: 'white'
-  },
-  removed: {
-    background: 'red',
-    color: 'white'
-  },
-  text: {
-    color: 'black'
-  }
-})
+
