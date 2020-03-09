@@ -7,8 +7,6 @@ import { TextFieldComponent } from './components/TextFieldComponent';
 import { CardWrapper } from './components/CardWrapper';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-
-
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -33,9 +31,6 @@ function App() {
   const [leftTextBox, setLeftTextBox] = useState(leftLorem)
   const [rightTextBox, setRightTextBox] = useState(rightLorem)
   const [value, setValue] = useState(0);
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
   const isPuru = value ? false : true
 
   return (
@@ -45,11 +40,13 @@ function App() {
         <Tabs
           value={value}
           variant="fullWidth"
-          onChange={handleChange}
+          onChange={(event: React.ChangeEvent<{}>, newValue: number) => {
+              setValue(newValue)
+            }}
           className={"TabStyle"}
         >
-          <Tab label="Purudiff" />
-          <Tab label="Diff" />
+          <Tab data-test="PuruButton" label="Purudiff" />
+          <Tab data-test="DiffButton" label="Diff" />
         </Tabs>
         </AppBar>
       <Grid container justify="space-evenly" alignItems="flex-start">
