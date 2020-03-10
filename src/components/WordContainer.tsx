@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Grid } from '@material-ui/core'
 import * as JsDiff from 'diff'
 import _ from 'lodash'
-
+import { v4 as uuidv4 } from "uuid";
 
 import './WordContainer.scss'
 
@@ -26,7 +26,7 @@ const parseText = (wordsArray: JsDiff.Change[]): parseText[] => {
     const values = item.value.match(/[\s\S]{1,1}/g) || []
     return values.map((valuesItem, valuesIndex) => {
       return {
-        id: `${itemIndex}-${valuesIndex}`,
+        id: `${itemIndex}-${valuesIndex}-${uuidv4()}`,
         count: valuesItem.length,
         value: valuesItem,
         added: item.added || false,

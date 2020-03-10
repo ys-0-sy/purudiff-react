@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState } from 'react'
 import './App.scss';
-import { Grid, Tabs, Tab, AppBar } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import { WordContainer } from './components/WordContainer';
 import { TextFieldComponent } from './components/TextFieldComponent';
 import { CardWrapper } from './components/CardWrapper';
+import { Header } from './components/Header'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -33,22 +34,14 @@ function App() {
   const [value, setValue] = useState(0);
   const isPuru = value ? false : true
 
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-      <AppBar position="static">
-        <Tabs
-          value={value}
-          variant="fullWidth"
-          onChange={(event: React.ChangeEvent<{}>, newValue: number) => {
-              setValue(newValue)
-            }}
-          className={"TabStyle"}
-        >
-          <Tab data-test="PuruButton" label="Purudiff" />
-          <Tab data-test="DiffButton" label="Diff" />
-        </Tabs>
-        </AppBar>
+      <Header handleChange={handleChange} value={value} />
       <Grid container justify="space-evenly" alignItems="flex-start">
         <CardWrapper>
             <TextFieldComponent
