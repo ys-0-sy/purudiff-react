@@ -28,7 +28,7 @@ const theme = createMuiTheme({
 const leftLorem = "Lorem Ipsum is simply dummy \ntext of the printing and typesetting industry.\n"
 const rightLorem = "Lorem Ipsam is samply dammy text of the printing and typosetting industry.\n ."
 
-function App() {
+const App: React.FC = () => {
   const [leftTextBox, setLeftTextBox] = useState(leftLorem)
   const [rightTextBox, setRightTextBox] = useState(rightLorem)
   const [value, setValue] = useState(0);
@@ -41,30 +41,30 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-      <Header handleChange={handleChange} value={value} />
-      <Grid container justify="space-evenly" alignItems="flex-start">
-        <CardWrapper>
+        <Header handleChange={handleChange} value={value} />
+        <Grid container justify="space-evenly" alignItems="flex-start">
+          <CardWrapper>
             <TextFieldComponent
               data-test="TextField1"
               TextBox={{
                 state: leftTextBox,
                 setState: setLeftTextBox
               }}
-          />
-          <WordContainer data-test="Word1" texts={[leftTextBox, rightTextBox]} puru={isPuru} type="added" />
-        </CardWrapper>
-        <CardWrapper>
+            />
+            <WordContainer data-test="Word1" texts={[leftTextBox, rightTextBox]} puru={isPuru} type="added" />
+          </CardWrapper>
+          <CardWrapper>
             <TextFieldComponent
               data-test="TextField2"
-            TextBox={{
+              TextBox={{
                 state: rightTextBox,
                 setState: setRightTextBox
-            }}
-          />
-          <WordContainer data-test="Word2" texts={[leftTextBox, rightTextBox]} puru={isPuru}  type="removed" />
-        </CardWrapper>
+              }}
+            />
+            <WordContainer data-test="Word2" texts={[leftTextBox, rightTextBox]} puru={isPuru}  type="removed" />
+          </CardWrapper>
         </Grid>
-        </ThemeProvider>
+      </ThemeProvider>
     </div>
   );
 }
